@@ -7,31 +7,22 @@ Tic Tac Toe
 2. Validate if a box is already occupied.
 """
 
-#Libraries
-from turtle import hideturtle
-from turtle import up
-from turtle import goto
-from turtle import down
-from turtle import circle
-from turtle import update
-from turtle import setup
-from turtle import tracer
-from turtle import onscreenclick
-from turtle import done
-from turtle import color, pensize
+# Libraries
+from turtle import hideturtle, up, goto, down, circle, update, setup, tracer
+from turtle import onscreenclick, done, color, pensize
 
 from freegames import line
 
 
-#Size correction
+# Size correction
 SIZE = 100
-diff = 130 - SIZE  #Difference between grid and icon size
+diff = 130 - SIZE  # Difference between grid and icon size
 
 
-board = [False for i in range(9)] #Detect if the checkbox is already used
+board = [False for i in range(9)]  # Detect if the checkbox is already used
 
 
-def grid(): #Define the grid
+def grid():  # Define the grid
     """Draw tic-tac-toe grid."""
     line(-67, 200, -67, -200)
     line(67, 200, 67, -200)
@@ -39,7 +30,7 @@ def grid(): #Define the grid
     line(-200, 67, 200, 67)
 
 
-def drawx(x, y): #Draw the x
+def drawx(x, y):  # Draw the x
     """Draw X player."""
     pensize(10)
     color('red')
@@ -47,7 +38,7 @@ def drawx(x, y): #Draw the x
     line(x+diff, y+diff, x + SIZE, y + SIZE)
 
 
-def drawo(x, y): #Draw the o
+def drawo(x, y):  # Draw the o
     """Draw O player."""
     up()
     pensize(10)
@@ -64,17 +55,15 @@ def floor(value):
 
 state = {'player': 0}
 players = [drawx, drawo]
-moves_played = 0 # Keep track of the number of moves played
+moves_played = 0  # Keep track of the number of moves played
 
 
-def tap(x, y): #User click location
+def tap(x, y):  # User click location
     """Draw X or O in tapped square."""
     x = floor(x)
     y = floor(y)
-    
-    #Index of the square pressed
+    # Index of the square pressed
     box_index = int((x+200)//133+(abs(y-66))//133*3)
-    
     # Check if the box is occupied
     if not board[box_index]:
         board[box_index] = True
@@ -92,27 +81,29 @@ def tap(x, y): #User click location
         elif check_winner():
             print(f"Player {int(not player) + 1} wins!")
 
+
 def check_winner():
     """Check if there is a winner."""
     for i in range(3):
         # Horizontal check
-        if board[i*3] == board[i*3+1] == board[i*3+2] == True:
+        if (board[i*3] == board[i*3+1]) or (board[i*3] == board[i*3+2]):
             return True
         # Vertical check
-        if board[i] == board[i+3] == board[i+6] == True:
+        if (board[i] == board[i+3]) or (board[i] == board[i+6]):
             return True
     # Diagonal checks
-    if board[0] == board[4] == board[8] == True:
+    if (board[0] == board[4]) or (board[0] == board[8]):
         return True
-    if board[2] == board[4] == board[6] == True:
+    if (board[2] == board[4]) or (board[2] == board[6]):
         return True
     return False
 
-setup(420, 420, 370, 0) #Create the window
+
+setup(420, 420, 370, 0)  # Create the window
 hideturtle()
 tracer(False)
-#Makes the grid
+# Makes the grid
 grid()
 update()
-onscreenclick(tap) #Detect the clicks
+onscreenclick(tap)  # Detect the clicks
 done()
