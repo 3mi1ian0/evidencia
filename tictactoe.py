@@ -64,6 +64,7 @@ def floor(value):
 
 state = {'player': 0}
 players = [drawx, drawo]
+moves_played = 0 # Keep track of the number of moves played
 
 
 def tap(x, y): #User click location
@@ -82,7 +83,30 @@ def tap(x, y): #User click location
         draw(x, y)
         update()
         state['player'] = not player
+        global moves_played
+        moves_played += 1
+        # Check for a tie game
+        if moves_played == 9 and not check_winner():
+            print("Tie game!")
+        # Check for a winner
+        elif check_winner():
+            print(f"Player {int(not player) + 1} wins!")
 
+def check_winner():
+    """Check if there is a winner."""
+    for i in range(3):
+        # Horizontal check
+        if board[i*3] == board[i*3+1] == board[i*3+2] == True:
+            return True
+        # Vertical check
+        if board[i] == board[i+3] == board[i+6] == True:
+            return True
+    # Diagonal checks
+    if board[0] == board[4] == board[8] == True:
+        return True
+    if board[2] == board[4] == board[6] == True:
+        return True
+    return False
 
 setup(420, 420, 370, 0) #Create the window
 hideturtle()
