@@ -1,3 +1,13 @@
+""" EQUIPO 7:
+            EMILIANO MENDOZA NIETO - A01706083
+            Juan Yael Ávalos Mayorga - A01276329
+Tic Tac Toe
+
+1. Modify the size and color of the "X" and "O" symbols and center them.
+2. Validate if a box is already occupied.
+"""
+
+#Libraries
 from turtle import hideturtle
 from turtle import up
 from turtle import goto
@@ -12,14 +22,16 @@ from turtle import color, pensize
 
 from freegames import line
 
+
+#Size correction
 SIZE = 100
-
-diff = 130 - SIZE
-
-board = [False for i in range(9)]
+diff = 130 - SIZE  #Difference between grid and icon size
 
 
-def grid():
+board = [False for i in range(9)] #Detect if the checkbox is already used
+
+
+def grid(): #Define the grid
     """Draw tic-tac-toe grid."""
     line(-67, 200, -67, -200)
     line(67, 200, 67, -200)
@@ -27,7 +39,7 @@ def grid():
     line(-200, 67, 200, 67)
 
 
-def drawx(x, y):
+def drawx(x, y): #Draw the x
     """Draw X player."""
     pensize(10)
     color('red')
@@ -35,7 +47,7 @@ def drawx(x, y):
     line(x+diff, y+diff, x + SIZE, y + SIZE)
 
 
-def drawo(x, y):
+def drawo(x, y): #Draw the o
     """Draw O player."""
     up()
     pensize(10)
@@ -54,13 +66,17 @@ state = {'player': 0}
 players = [drawx, drawo]
 
 
-def tap(x, y):
+def tap(x, y): #User click location
     """Draw X or O in tapped square."""
     x = floor(x)
     y = floor(y)
-    ind = int((x+200)//133+(abs(y-66))//133*3)
-    if not board[ind]:
-        board[ind] = True
+    
+    #Index of the square pressed
+    box_index = int((x+200)//133+(abs(y-66))//133*3)
+    
+    # Check if the box is occupied
+    if not board[box_index]:
+        board[box_index] = True
         player = state['player']
         draw = players[player]
         draw(x, y)
@@ -68,10 +84,11 @@ def tap(x, y):
         state['player'] = not player
 
 
-setup(420, 420, 370, 0)
+setup(420, 420, 370, 0) #Create the window
 hideturtle()
 tracer(False)
+#Makes the grid
 grid()
 update()
-onscreenclick(tap)
+onscreenclick(tap) #Detect the clicks
 done()
