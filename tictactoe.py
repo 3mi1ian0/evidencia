@@ -8,9 +8,13 @@ from turtle import setup
 from turtle import tracer
 from turtle import onscreenclick
 from turtle import done
+from turtle import color, pensize
 
 from freegames import line
 
+SIZE = 100
+
+diff = 130 - SIZE
 
 def grid():
     """Draw tic-tac-toe grid."""
@@ -22,17 +26,20 @@ def grid():
 
 def drawx(x, y):
     """Draw X player."""
-    line(x, y, x + 133, y + 133)
-    line(x, y + 133, x + 133, y)
+    pensize(10)
+    color('red')
+    line(x+diff, y + SIZE, x + SIZE, y+diff)
+    line(x+diff, y+diff, x + SIZE, y + SIZE)
 
 
 def drawo(x, y):
     """Draw O player."""
     up()
-    goto(x + 67, y + 5)
+    pensize(10)
+    color('blue')
+    goto(x + 67, y + diff//2)
     down()
-    circle(62)
-
+    circle(SIZE//2)
 
 def floor(value):
     """Round value down to grid with square size 133."""
