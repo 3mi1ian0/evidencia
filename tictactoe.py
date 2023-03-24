@@ -5,6 +5,10 @@ Tic Tac Toe
 
 1. Modify the size and color of the "X" and "O" symbols and center them.
 2. Validate if a box is already occupied.
+
+3. Optionally, some improvements were made, to print a winner or tie.
+The code can still be improved by, for example,
+putting a match count and restarting the game every time there is a winner.
 """
 
 # Libraries
@@ -54,7 +58,7 @@ def floor(value):
 
 
 state = {'player': 0}
-players = [drawx, drawo]
+players = [drawx, drawo]  # Definition of players
 moves_played = 0  # Keep track of the number of moves played
 
 
