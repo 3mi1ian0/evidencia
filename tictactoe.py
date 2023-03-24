@@ -1,4 +1,6 @@
-""" EQUIPO 7:
+"""
+==============================================================================
+EQUIPO 7:
             EMILIANO MENDOZA NIETO - A01706083
             Juan Yael Ávalos Mayorga - A01276329
 Tic Tac Toe
@@ -9,6 +11,7 @@ Tic Tac Toe
 3. Optionally, some improvements were made, to print a winner or tie.
 The code can still be improved by, for example,
 putting a match count and restarting the game every time there is a winner.
+==============================================================================
 """
 
 # Libraries
