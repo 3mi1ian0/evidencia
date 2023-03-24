@@ -18,6 +18,7 @@ diff = 130 - SIZE
 
 board = [False for i in range(9)]
 
+
 def grid():
     """Draw tic-tac-toe grid."""
     line(-67, 200, -67, -200)
@@ -43,6 +44,7 @@ def drawo(x, y):
     down()
     circle(SIZE//2)
 
+
 def floor(value):
     """Round value down to grid with square size 133."""
     return ((value + 200) // 133) * 133 - 200
@@ -56,9 +58,7 @@ def tap(x, y):
     """Draw X or O in tapped square."""
     x = floor(x)
     y = floor(y)
-    
     ind = int((x+200)//133+(abs(y-66))//133*3)
-    
     if not board[ind]:
         board[ind] = True
         player = state['player']
